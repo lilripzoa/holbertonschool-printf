@@ -8,5 +8,6 @@
 int _printf(const char *format, ...);
 int print_char(char c); /* Prototype de print_char*/
 int print_string(char *str); /* Prototype de print_string*/
+int handle_format(char specifier, va_list args); /*prototype de handle_format*/
 
 #endif /* MAIN_H */
