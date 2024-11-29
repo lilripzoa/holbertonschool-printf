@@ -1,0 +1,80 @@
+.TH _PRINTF 3 "29-11-24" "Version 1.0" "Libc Manual"
+.\"th definit les metadonnees de la man page (nom: _printf, section: 3, date: 29-11-24, version du programme: Version 1.0, categorie: libc manual pour une fonction c personnalisé)
+
+.SH NAME
+_printf \- Custom printf
+.\" nom de la fonction et bieve description
+.SH SYNOPSIS
+.B #include "main.h"
+.B int _printf(const char *format, ...);
+.\"signature de la fonction
+
+.SH DESCRIPTION
+The project is to create a function called _printf, which mimics the behavior of the standard printf function in C. This involves implementing the ability to print various types of data (such as integers, strings, characters, etc.) by processing format specifiers, managing variable arguments, and handling edge cases like null pointers or unsupported specifiers. The goal is to develop a custom implementation of printf that can handle multiple formatting options and display the correct output based on user input
+
+The function takes a format string that may contain format specifiers to print different types of values such as strings, integers, or characters.
+Supported format specifiers include:
+
+`%d` and `%i` for integers,
+
+`%u` for unsigned integers,
+
+`%o` for octals,
+
+`%x` and `%X` for hexadecimals,
+
+`%c` for characters,
+
+`%s` for strings,
+
+`%p` for pointers,
+
+`%%` for the `%` character.
+
+In this project, only certain functions are allowed to implement the `_printf` function:
+- `write` (man 2 write) : Écrit des données sur la sortie standard.
+- `malloc` (man 3 malloc) : Alloue de la mémoire dynamique.
+- `free` (man 3 free) : Libère la mémoire allouée.
+- `va_start` (man 3 va_start) : Initialise l'accès aux arguments variadiques.
+- `va_end` (man 3 va_end) : Termine l'accès aux arguments variadiques.
+- `va_copy` (man 3 va_copy) : Copie une liste d'arguments variadiques.
+- `va_arg` (man 3 va_arg) : Récupère un argument variadique spécifique.
+
+.\"description de la fonction, des specificateur et function et macros autorisé
+
+.SH RETURN VALUE
+The function returns the number of characters printed, or a negative number in case of error.
+If an invalid format specifier is encountered, or an internal error occurs, the function returns a negative number.
+
+.\"Explication sur la valeur de retour de la fonction
+
+.SH ERRORS
+The following errors may be encountered by the _printf function:
+.TP
+If an invalid or unknown format specifier is encountered, a negative number will be returned.
+.TP
+If an argument does not match the expected type for a given format specifier, undefined behavior may occur.
+.\"Qu'est ce que la fonction retour en cas d'erreur
+
+.SH EXAMPLES
+.B #include "main.h"
+.B int main(void)
+.br
+.B {
+.br
+.B int nmb: 225;
+.br
+.B _printf("Hello, %s!\n", "world");
+.br
+.B _printf("Integer: %d\n", nmb);
+.br
+.B return (0);
+.br
+.B }
+.br
+The first line is "Hello, world!" and the second is "Integer: 225".
+
+.\"exemple de code en c
+
+.SH AUTHOR
+developped by CARMEN and KAREN
