@@ -66,7 +66,7 @@ int print_number(int n)
 	while (n > 0)
 	{
 		buffer[i++] = (n % 10) + '0'; /* Stock chaque chiffre*/
-		n /= 10;
+		n /= 10; /*on fait une division entiere par 10*/
 	}
 	/* Affiche les chiffres de gauche a droite*/
 	while (i > 0)
