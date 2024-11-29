@@ -60,18 +60,18 @@ int print_number(int n)
 	/** Si le nombre est négatif*/
 	if (n < 0)
 	{
-		write(1, "-", 1); /* Affiche le signe pour indiquer un nombre négatif*/
+		write(1, "-", 1); /** Affiche le signe pour indiquer un nombre négatif*/
 		n = -n; /** Rend le nombre positif*/
 		count++; /** Incremente le compteur pour le signe affiché*/
 	}
-	/* Convertit l'entier en chaine*/
+	/** Convertit l'entier en chaine*/
 	while (n > 0)
 	{
-		buffer[i++] = (n % 10) + '0'; /* Recupere le dernier chiffre et le
+		buffer[i++] = (n % 10) + '0'; /** Recupere le dernier chiffre et le
 						convertit en caractère*/
 		n /= 10; /** Supprime le dernier chiffre du nombre*/
 	}
-	/* Affiche les chiffres de gauche a droite*/
+	/** Affiche les chiffres de gauche a droite*/
 	while (i > 0)
 	{
 		write(1, &buffer[--i], 1); /** Affiche le chiffre couvrant*/
@@ -127,8 +127,8 @@ int handle_format(char specifier, va_list args)
  */
 int _printf(const char *format, ...)
 {
-	va_list args; /* Liste des arguments */
-	int count = 0; /* Nombre caractères affichés */
+	va_list args; /** Liste des arguments */
+	int count = 0; /** Nombre caractères affichés */
 	const char *ptr;
 
 	/** Verifie si le format est NULL*/
@@ -136,22 +136,21 @@ int _printf(const char *format, ...)
 	{
 		return (-1); /** Retourne -1 si le format est NULL signalant une erreur*/
 	}
-	va_start(args, format); /* Initialise les arguments*/
+	va_start(args, format); /** Initialise les arguments*/
 
 	/** Parcours chaque caractère de la chaine format*/
 	for (ptr = format; *ptr; ptr++)
 	{
-		if (*ptr == '%') /* Trouve un format*/
+		if (*ptr == '%') /** Trouve un format*/
 		{
-			ptr++; /* Passe au specificateur*/
-			count += handle_format(*ptr, args);  /* Appelle handle_format */
+			ptr++; /** Passe au specificateur*/
+			count += handle_format(*ptr, args);  /** Appelle handle_format */
 		}
-		else /* Si pas de %*/
+		else /** Si pas de %*/
 		{
-			count += print_char(*ptr); /* Affiche le caractère*/
+			count += print_char(*ptr); /** Affiche le caractère*/
 		}
 	}
-	va_end(args); /* Libère les arguments*/
-	return (count); /* Retourne le total de caractères affichés*/
+	va_end(args); /** Libère les arguments*/
+	return (count); /** Retourne le total de caractères affichés*/
 }
-
