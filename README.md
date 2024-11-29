@@ -106,4 +106,3 @@ int main(void)
 `%p` for pointers,
 
 `%%` for the `%` character.
-
