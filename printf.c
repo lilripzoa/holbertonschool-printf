@@ -51,30 +51,33 @@ int print_number(int n)
 	char buffer[11]; /* Stocker la répresentation du nombre*/
 	int i = 0;
 
-	if (n == 0) /* Si le nombre est 0*/
+	/** Si le nombre est 0*/
+	if (n == 0)
 	{
-		write(1, "0", 1);
-		return (1);
+		write(1, "0", 1); /** Affiche 0 a l'ecran*/
+		return (1); /** Retourne 1 car un caractère est affiché*/
 	}
-	if (n < 0) /* Si le nombre est negatif*/
+	/** Si le nombre est négatif*/
+	if (n < 0)
 	{
-		write(1, "-", 1); /* Affiche le signe*/
-		n = -n;
-		count++;
+		write(1, "-", 1); /* Affiche le signe pour indiquer un nombre négatif*/
+		n = -n; /** Rend le nombre positif*/
+		count++; /** Incremente le compteur pour le signe affiché*/
 	}
 	/* Convertit l'entier en chaine*/
 	while (n > 0)
 	{
-		buffer[i++] = (n % 10) + '0'; /* Stock chaque chiffre*/
-		n /= 10;
+		buffer[i++] = (n % 10) + '0'; /* Recupere le dernier chiffre et le
+						convertit en caractère*/
+		n /= 10; /** Supprime le dernier chiffre du nombre*/
 	}
 	/* Affiche les chiffres de gauche a droite*/
 	while (i > 0)
 	{
-		write(1, &buffer[--i], 1);
-		count++;
+		write(1, &buffer[--i], 1); /** Affiche le chiffre couvrant*/
+		count++; /** Incrementte le caractère*/
 	}
-	return (count);
+	return (count); /** Retourne le total des caractères*/
 }
 /**
  * handle_format - gere l'affichage en fonction du specificateur de format
@@ -87,28 +90,33 @@ int handle_format(char specifier, va_list args)
 {
 	int count = 0;
 
-	if (specifier == 'c')  /* Gère %c */
+	/** Si le format est %c*/
+	if (specifier == 'c')
 	{
-		count += print_char(va_arg(args, int));
+		count += print_char(va_arg(args, int)); /** Affiche un caractère*/
 	}
-	else if (specifier == 's')  /* Gère %s */
+	/** Si le format est %s*/
+	else if (specifier == 's')
 	{
-		count += print_string(va_arg(args, char *));
+		count += print_string(va_arg(args, char *)); /** Affiche une chaine*/
 	}
-	else if (specifier == 'd' || specifier == 'i')  /* Gère %d et %i */
+	/** Si le format est %d et %i*/
+	else if (specifier == 'd' || specifier == 'i')
 	{
-		count += print_number(va_arg(args, int));
+		count += print_number(va_arg(args, int)); /** Affiche un entier*/
 	}
-	else if (specifier == '%')  /* Gère %% */
+	/** Si le format est %%**/
+	else if (specifier == '%')
 	{
-		count += print_char('%');
+		count += print_char('%'); /** Affiche un %*/
 	}
-	else  /* Spécificateur non pris en charge */
+	/**Format non pris en charge*/
+	else
 	{
-		count += print_string("%r");
+		count += print_string("%r"); /** Affiche %r comme remplacement*/
 	}
 
-	return (count);
+	return (count); /** Retourne le total des caractères affichés*/
 }
 
 /**
@@ -123,13 +131,15 @@ int _printf(const char *format, ...)
 	int count = 0; /* Nombre caractères affichés */
 	const char *ptr;
 
-	if (!format) /* Verifie si format est NULL*/
+	/** Verifie si le format est NULL*/
+	if (!format)
 	{
-		return (-1);
+		return (-1); /** Retourne -1 si le format est NULL signalant une erreur*/
 	}
 	va_start(args, format); /* Initialise les arguments*/
 
-	for (ptr = format; *ptr; ptr++) /* Parcours la chaine format*/
+	/** Parcours chaque caractère de la chaine format*/
+	for (ptr = format; *ptr; ptr++)
 	{
 		if (*ptr == '%') /* Trouve un format*/
 		{
@@ -144,3 +154,4 @@ int _printf(const char *format, ...)
 	va_end(args); /* Libère les arguments*/
 	return (count); /* Retourne le total de caractères affichés*/
 }
+
