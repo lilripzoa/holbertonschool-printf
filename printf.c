@@ -66,10 +66,11 @@ int print_number(int n)
 	}
 	/** Convertit l'entier en chaine*/
 	while (n > 0)
-	{
-		buffer[i++] = (n % 10) + '0'; /** Recupere le dernier chiffre et le
-						convertit en caractère*/
+	}
+		buffer[i++] = (n % 10) + '0'; /** Recupere le dernier chiffre et convertit*/
 		n /= 10; /** Supprime le dernier chiffre du nombre*/
+		buffer[i++] = (n % 10) + '0'; /* Stock chaque chiffre*/
+		n /= 10; /*on fait une division entiere par 10*/
 	}
 	/** Affiche les chiffres de gauche a droite*/
 	while (i > 0)
